@@ -1,7 +1,7 @@
 ---
 layout: page
-title:"ODIN-PROJECTS"
-permalink: /projects
+title: Projects
+permalink: /projects/
 ---
 
 
