@@ -5,4 +5,6 @@ permalink: /projects/
 ---
 
 
-test
+The Odin Project:
+
+1. https://jakubkanna.github.io/Odin-Project-Library/
