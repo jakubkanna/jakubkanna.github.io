@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Emerging web-app developer. Enjoy following my learning process.
+I'm an interdisciplinary artist and emerging web app developer.
