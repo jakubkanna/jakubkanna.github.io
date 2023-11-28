@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Projects
-description: This is archive of my The Odin Project journey.
 permalink: /projects/
 ---
 
