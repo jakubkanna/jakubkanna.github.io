@@ -8,6 +8,10 @@ permalink: /projects/
 
 #### JavaScript Course
 
+##### Asynchronous JavaScript and APIs
+
+1. <a href="https://jakubkanna.github.io/weatherapp/" target="_blank">Weather App</a>
+
 ##### Organizing Your Javascript Code
 
 1. <a href="https://jakubkanna.github.io/todo-list/" target="_blank">Todolist</a>

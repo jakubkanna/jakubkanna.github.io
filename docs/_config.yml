@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Jakub Kanna
 email: info@jakubkanna.com
-description: The archive of my The Odin Project journey. A way to become XXI century Leonardo Da Vinci.
+description: The archive of my journey with The Odin Project, a way to become a 21st-century Leonardo da Vinci.
 #>-  this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
