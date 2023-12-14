@@ -8,6 +8,10 @@ permalink: /projects/
 
 #### JavaScript Course
 
+##### A Bit of Computer Science
+
+1. <a href="https://github.com/jakubkanna/recursion" target="_blank">Recursion</a>
+
 ##### Asynchronous JavaScript and APIs
 
 1. <a href="https://jakubkanna.github.io/weatherapp/" target="_blank">Weather App</a>
