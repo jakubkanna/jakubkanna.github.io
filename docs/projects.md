@@ -10,6 +10,8 @@ permalink: /projects/
 
 ##### A Bit of Computer Science
 
+<a href="https://github.com/jakubkanna/knights-travails" target="_blank">Knights Travails</a>
+
 1. <a href="https://github.com/jakubkanna/binary-search-trees" target="_blank">Binary Search Trees</a>
 1. <a href="https://github.com/jakubkanna/linked-list" target="_blank">Linked List</a>
 1. <a href="https://github.com/jakubkanna/recursion" target="_blank">Recursion</a>
