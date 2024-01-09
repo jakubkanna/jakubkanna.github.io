@@ -1,159 +1,51 @@
-import "./style.css";
-
-const PROJECT_TOPIC = "odinproject";
-const USER = "jakubkanna";
-
-class DataFetcher {
-  async fetchData() {
-    try {
-      const apiUrl = `https://api.github.com/users/${USER}/repos`;
-      const response = await fetch(apiUrl);
-      const repos = await response.json();
-      const filteredRepos = repos.filter((repo) =>
-        repo.topics.includes(PROJECT_TOPIC)
-      );
-      return filteredRepos;
-    } catch (error) {
-      console.error("Error fetching user repos:", error);
-      // Provide user feedback if needed
-      throw new Error("Failed to fetch user repos. Please try again later.");
-    }
-  }
-}
-
-class OdinProjectViewerController {
+class WorkSection {
   constructor() {
-    this.dataFetcher = new DataFetcher();
+    this.projectName = "Project name";
+    this.projectLink = "#";
+    this.projectDescription =
+      "Short description of the project. Just a couple sentences will do.";
+    this.main = document.querySelector("main");
+    this.main.append(this.createSection());
   }
 
-  async init() {
-    try {
-      // Fetch the data
-      this.data = await this.dataFetcher.fetchData();
+  createSection() {
+    const section = document.createElement("section");
 
-      // Renderer
-      this.renderer = new Renderer(this.data);
+    const workDiv = document.createElement("div");
+    workDiv.classList.add("work");
 
-      // Initialize the project container
-      this.renderer.initializeProjectContainer();
-      this.renderer.renderSelectedItem();
-    } catch (error) {
-      console.error("Initialization error:", error);
-    }
-  }
-}
+    const miniatureDiv = document.createElement("div");
+    miniatureDiv.classList.add("miniature");
+    miniatureDiv.textContent = "screenshot of project";
 
-class Renderer {
-  constructor(data) {
-    this._currentIndex = 0;
-    this.data = data;
-    this.containerID = "odin-project-inner";
-    this.helper = new RendererHelper();
-  }
+    const descriptionDiv = document.createElement("div");
+    descriptionDiv.classList.add("description");
 
-  set currentIndex(index) {
-    if (index < 0 || index > this.data.length - 1) {
-      this._currentIndex = 0;
-    } else if (index < 0) {
-      this._currentIndex = this.data.length - 1;
-    } else {
-      this._currentIndex = parseInt(index);
-    }
-  }
+    const h3 = document.createElement("h3");
+    h3.textContent = this.projectName;
 
-  get currentIndex() {
-    return this._currentIndex;
-  }
+    const githubIcon = document.createElement("i");
+    githubIcon.classList.add("devicon-github-original");
 
-  initializeProjectContainer() {
-    const odinProjectContainer = document.createElement("div");
-    odinProjectContainer.id = "odin-project";
+    const p = document.createElement("p");
+    p.textContent = this.projectDescription;
 
-    const innerContainer = document.createElement("div");
-    innerContainer.id = this.containerID;
+    descriptionDiv.appendChild(h3);
+    descriptionDiv.appendChild(githubIcon);
+    descriptionDiv.appendChild(p);
 
-    const prevButton = this.helper.createButton("Previous", () => {
-      this.currentIndex--;
-      this.renderSelectedItem();
-    });
+    workDiv.appendChild(miniatureDiv);
+    workDiv.appendChild(descriptionDiv);
 
-    const nextButton = this.helper.createButton("Next", () => {
-      this.currentIndex++;
-      this.renderSelectedItem();
-    });
+    section.appendChild(workDiv);
 
-    odinProjectContainer.appendChild(innerContainer);
-    odinProjectContainer.appendChild(prevButton);
-    odinProjectContainer.appendChild(nextButton);
-
-    document.body.appendChild(odinProjectContainer);
-  }
-
-  renderSelectedItem() {
-    const { homepage, description } = this.data[this.currentIndex] || {};
-    const innerContainer = document.getElementById(this.containerID);
-    const projectElement = this.helper.createProjectElement(
-      homepage,
-      description
-    );
-
-    innerContainer.innerHTML = "";
-    innerContainer.appendChild(projectElement);
+    return section;
   }
 }
 
-class RendererHelper {
-  createProjectElement(homepage, description) {
-    const projectElement = document.createElement("div");
-    const contentContainer = this.createContentContainer(homepage);
-    const descriptionElement = this.createDescriptionElement(description);
+// Create an array of instances using a loop
+const sections = [];
 
-    projectElement.appendChild(contentContainer);
-    projectElement.appendChild(descriptionElement);
-
-    return projectElement;
-  }
-
-  createContentContainer(homepage) {
-    const contentContainer = document.createElement("div");
-    contentContainer.id = "content";
-    if (homepage) {
-      const iframeElement = this.createIframeElement(homepage);
-      contentContainer.appendChild(iframeElement);
-    } else {
-      const noHomepageElement = this.createNoHomepageElement();
-      contentContainer.appendChild(noHomepageElement);
-    }
-
-    return contentContainer;
-  }
-
-  createIframeElement(src) {
-    const iframeElement = document.createElement("iframe");
-    iframeElement.src = src;
-    return iframeElement;
-  }
-
-  createNoHomepageElement() {
-    const noHomepageElement = document.createElement("p");
-    noHomepageElement.textContent =
-      "This project has no homepage. Visit its GitHub page for details.";
-    return noHomepageElement;
-  }
-
-  createDescriptionElement(description) {
-    const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = description;
-    return descriptionElement;
-  }
-
-  createButton(text, clickHandler) {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.addEventListener("click", clickHandler);
-    return button;
-  }
+for (let i = 0; i < 4; i++) {
+  sections.push(new WorkSection());
 }
-
-const odinProjectViewerController = new OdinProjectViewerController();
-odinProjectViewerController.init();
